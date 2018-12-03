@@ -8,6 +8,23 @@ var repoName = arg[3];
 
 console.log('Welcome to the GitHub Avatar Downloader!');
 
+function inputTest(arg){
+  if (arg.length === 4){
+    getRepoContributors(repoOwner, repoName, function(err, result) {
+    console.log("Errors:", err);
+    console.log("Result:", result);
+    });
+  }
+  else if (arg.length > 4){
+    console.log('Hey buddy, please input 2 arguments only!!!');
+    console.log('Your input is ' + arg.length + '. Too many!');
+  }
+  else {
+    console.log('Hey buddy, please input 2 arguments only!!!');
+    console.log('Your input is ' + arg.length + '. Input a bit more!');
+  }
+}
+
 function getRepoContributors(repoOwner, repoName, cb) {
   // ...
   var options = {
@@ -38,7 +55,4 @@ function downloadImageByURL(url, filePath){
     .pipe(fs.createWriteStream(fileStore));
 }
 
-getRepoContributors(repoOwner, repoName, function(err, result) {
-  console.log("Errors:", err);
-  console.log("Result:", result);
-});
+inputTest(arg);
